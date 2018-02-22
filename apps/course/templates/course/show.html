@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Course</title>
+</head>
+<body>
+    
+    <h1>Course: {{ name }}</h1>
+    <p>Description: {{ desc }}</p>
+    <h2>Comments:</h2>
+    {% for course in course_comments %}
+        {% for comment in course.comments.all %}
+            <p>{{comment.content}}</p>
+        {% endfor %}
+    {% endfor %}
+    <a href="/">Go Back</a> | <a href="/comment/{{id}}/create">Add Comment</a>
+
+</body>
+</html>

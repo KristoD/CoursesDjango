@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Courses</title>
+</head>
+<body>
+
+    <h1>Add New Course</h1>
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+        <form action="process/course" method="POST">
+            {% csrf_token %}
+            Name: <input type="text" name="name">
+            Description: <textarea name="desc" cols="30" rows="10"></textarea>
+            <input type="submit" value="Add">
+        </form>
+
+    <h1>Courses</h1>
+    <table>
+        <thead>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{course.course.name}}</td>
+                    <td>{{course.content}}</td>
+                    <td>{{course.created_at}}</td>
+                    <td><a href="show/{{course.course_id}}">Show</a> | <a href="destroy/{{course.course_id}}">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>
